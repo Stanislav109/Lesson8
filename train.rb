@@ -23,14 +23,12 @@ class Train
     @@all_trains[number] = self
   end
 
-  # rubocop:disable Lint/DefEndAlignment
   def valid?
     validate!
     true
-    rescue StandardError
-      false
-    end
-  # rubocop:enable Lint/DefEndAlignment
+  rescue StandardError
+    false
+  end
 
   def list_of_wagons
     wagons.each { |wagon| yield wagon } if block_given?

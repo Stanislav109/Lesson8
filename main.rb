@@ -83,17 +83,14 @@ class RailRoad
 
   private
 
-  # rubocop:disable Lint/ShadowingOuterLocalVariable
   def create_station
     puts 'Введите название станции'
     name = gets.chomp!
     station = Station.new(name)
     stations << station
-    stations.each_with_index { |station, index| puts "#{index + 1}. #{station.name}" }
+    show_stations
   end
-  # rubocop:enable Lint/ShadowingOuterLocalVariable
 
-  # rubocop:disable Lint/UselessAssignment
   def create_train
     puts "Выберите тип поезда - 'passenger' или 'cargo'"
     type_of_train = gets.chomp!.to_sym
@@ -110,12 +107,11 @@ class RailRoad
     else
       puts 'Вы ввели неправильный тип поезда'
     end
-  rescue StandardError => e
+  rescue StandardError
     puts 'Допустимый формат: три буквы или цифры,
           необязательный дефис и еще 2 буквы или цифры после дефиса'
     retry
   end
-  # rubocop:enable Lint/UselessAssignment
 
   def create_route
     stations.each_with_index { |station, index| puts "#{index + 1}. #{station.name}" }
